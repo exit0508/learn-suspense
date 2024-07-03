@@ -12,23 +12,21 @@ export default function ArtistPage({ artist }: { artist: Artist }) {
   return (
     <>
       <h1>{artist.name}</h1>
-      <Suspense fallback={<BigSpinner />}>
-        <Biography artistId={artist.id} />
-        <Suspense fallback={<AlbumsGlimmer />}>
-          <Panel>
-            <Albums artistId={artist.id} />
-          </Panel>
-        </Suspense>
+      <Biography artistId={artist.id} />
+      <Suspense fallback={<AlbumsGlimmer />}>
+        <Panel>
+          <Albums artistId={artist.id} />
+        </Panel>
       </Suspense>
     </>
   );
 }
 
-function BigSpinner(): ReactNode {
+export function BigSpinner(): ReactNode {
   return <h2>🌀 Loading...</h2>;
 }
 
-function AlbumsGlimmer(): ReactNode {
+export function AlbumsGlimmer(): ReactNode {
   return (
     <div className="glimmer-panel">
       <div className="glimmer-line" />
